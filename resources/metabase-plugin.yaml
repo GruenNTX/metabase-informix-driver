@@ -1,0 +1,35 @@
+# Complete list of options here: https://github.com/metabase/metabase/wiki/Metabase-Plugin-Manifest-Reference
+info:
+ name: Metabase Informix Driver
+ version: 0.0.1
+ description: enables Informix DB for Metabase
+dependencies:
+  - class: com.informix.jdbc.IfxDriver
+    message: >
+      Metabase requires the IBM Informix JDBC Driver in order to connect to Informix databases.
+driver:
+ name: ibminformix
+ display-name: IBMInformix
+ lazy-load: true
+ parent: sql-jdbc
+ # https://github.com/metabase/metabase/blod/master/src/metabase/driver/common.clj
+ connection-properties:
+    - host
+    - merge:
+        - port
+        - default: 9088
+    - merge:
+        - dbname
+        - display-name: Database name
+          placeholder: insert_name_here
+    - merge:
+        - additional-options
+        - display-name: Servername
+          placeholder: INFORMIXSERVER=insert_name_here;DELIMIDENT=y
+    - user
+    - password
+init:
+  - step: load-namespace
+    namespace: metabase.driver.ibminformix
+  - step: register-jdbc-driver
+    class: com.informix.jdbc.IfxDriver
