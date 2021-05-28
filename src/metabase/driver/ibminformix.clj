@@ -176,6 +176,47 @@
     :serial       :type/Integer 	
 	} database-type))
 
+;;; +----------------------------------------------------------------------------------------------------------------+
+;; Solution for the Problem, that IBM Informix always throws an Exception for the simple-select-probe-query
+(defn simple-select-probe-query
+;;   Simple (ie. cheap) SELECT on a given table to test for access and get column metadata. Doesn't return
+;;   anything useful (only used to check whether we can execute a SELECT query)
+;;     (simple-select-probe-query :postgres \"public\" \"my_table\")
+;;     -> [\"SELECT TRUE FROM public.my_table WHERE 1 <> 1 LIMIT 0\"]
+   [driver schema table]
+   {:pre [(string? table)]}
+;;  Using our SQL compiler here to get portable LIMIT (e.g. `SELECT TOP n ...` for SQL Server/Oracle)
+;; not explicitly needed for IBM Informix, but is unproblematic, so we leave it here.	
+   (let [honeysql {:select [[(sql.qp/->honeysql driver true) :_]]
+                   :from   [(sql.qp/->honeysql driver (hx/identifier :table schema table))]
+                   :where  [:not= 1 1]}
+         honeysql (sql.qp/apply-top-level-clause driver :limit honeysql {:limit 1})]
+     (sql.qp/format-honeysql driver honeysql)))
+ 
+(defn- execute-select-probe-query
+;;   Execute the simple SELECT query defined above. The main goal here is to check whether we're able to execute a SELECT
+;;   query against the Table in question -- we don't care about the results themselves -- so the query and the logic
+;;   around executing it should be as simple as possible. We need to highly optimize this logic because it's executed for
+;;   every Table on every sync.
+   [driver ^Connection conn [sql & params]]
+   {:pre [(string? sql)]}
+   (with-open [stmt (common/prepare-statement driver conn sql params)]
+;;     attempting to execute the SQL statement will throw an Exception if we don't have permissions; otherwise it will
+;;     truthy wheter or not it returns a ResultSet, but we can ignore that since we have enough info to proceed at
+;;     this point.
+     (.execute stmt)))
+ 
+;; withe the IBM Informix Database the simple-select-probe-query always throws an Exception, so:
+;; if the query throws an Exception, we continue 
+(defmethod i/have-select-privilege? :ibminformix
+   [driver conn table-schema table-name]
+   (let [sql-args (simple-select-probe-query driver table-schema table-name)]
+        (try
+        (execute-select-probe-query driver conn sql-args)
+         true
+        (catch Throwable _
+         true))))
+;;; +----------------------------------------------------------------------------------------------------------------+
 
 ;;(defmethod sql-jdbc.sync/excluded-schemas :ibminformix [_] ;;auskommentiert weil IBM db2 Syntax
 ;;  #{"SQLJ" 
