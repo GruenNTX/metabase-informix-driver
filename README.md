@@ -4,19 +4,7 @@ Driver for connecting IBM Informix DB to metabase
 Works with IBM Informix Version 12.10.UC2
 
 ### IMPORTANT!
-Works with metabase Versions OLDER than v0.37
-
-Metabase v037newer versions of Metabase break the driver, because of src/metabase/driver/sql_jdbc/sync/common.clj:
-```bash
- (defn simple-select-probe-query
-  "Simple (ie. cheap) SELECT on a given table to test for access and get column metadata. By default doesn't return
-  anything useful (only used to check whether we can execute a SELECT query) but you can override this by passing
-  `clause-overrides`.
-SELECT true FROM table WHERE 1 <> 1 LIMIT 0
-```
-Informix breaks on "LIMIT 0"
-
-Unfortunately I couldn't yet fix this...
+Untested with Versions older then v0.37
 
 issue: Mega sync performance improvements #13746   
 https://github.com/metabase/metabase/pull/13746
