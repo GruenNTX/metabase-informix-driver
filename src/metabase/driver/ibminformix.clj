@@ -6,20 +6,17 @@
 	    [metabase.driver :as driver]
             [metabase.driver.common :as driver.common]
             [metabase.driver.sql :as sql]
-            [metabase.driver.sql
-            [query-processor :as sql.qp]
-            [util :as sql.u]]
-            [metabase.driver.sql-jdbc
-            [connection :as sql-jdbc.conn]
-            [execute :as sql-jdbc.execute]
-            [sync :as sql-jdbc.sync]]
+            [metabase.driver.sql.query-processor :as sql.qp]
+	    [metabase.driver.sql.util :as sql.u]
+            [metabase.driver.sql-jdbc.connection :as sql-jdbc.conn]
+	    [metabase.driver.sql-jdbc.execute :as sql-jdbc.execute]
+	    [metabase.driver.sql-jdbc.sync :as sql-jdbc.sync]
  	    [metabase.driver.sql.parameters.substitution :as params.substitution]
             [metabase.driver.sql-jdbc.execute.legacy-impl :as legacy]
             [metabase.driver.sql.util.unprepare :as unprepare]
-            [metabase.util
-            [date-2 :as du]
-            [honeysql-extensions :as hx]
-            [ssh :as ssh]]
+            [metabase.util.date-2 :as du]
+	    [metabase.util.honeysql-extensions :as hx]
+	    [metabase.util.ssh :as ssh]
 	    [schema.core :as s])
   (:import [java.sql ResultSet Types]
            [java.time LocalDate LocalDateTime LocalTime OffsetDateTime OffsetTime ZonedDateTime]
