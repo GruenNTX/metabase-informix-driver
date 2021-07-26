@@ -1,7 +1,11 @@
 # metabase-informix-driver
 Driver for connecting IBM Informix DB to metabase
 
-Works with IBM Informix Version 12.10.UC2
+Works with IBM Informix Version 12.10
+
+Also needed in the /metabase/plugins/ is the ifxjdbc.jar
+Download ifxjdbc.jar from:
+https://www.ibm.com/de-de/products/informix/developer-tools
 
 ### IMPORTANT!
 Untested with Versions older then v0.37
