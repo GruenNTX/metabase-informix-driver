@@ -20,7 +20,7 @@
 	    [metabase.util.honeysql-extensions :as hx]
 	    [metabase.util.ssh :as ssh]
 	    [schema.core :as s])
-  (:import [java.sql ResultSet Types]
+  (:import [java.sql Connection DatabaseMetaData ResultSet Types]
            [java.time LocalDate LocalDateTime LocalTime OffsetDateTime OffsetTime ZonedDateTime]
            java.util.Date))
 
