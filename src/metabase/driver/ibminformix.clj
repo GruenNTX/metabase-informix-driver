@@ -11,6 +11,8 @@
             [metabase.driver.sql-jdbc.connection :as sql-jdbc.conn]
 	    [metabase.driver.sql-jdbc.execute :as sql-jdbc.execute]
 	    [metabase.driver.sql-jdbc.sync :as sql-jdbc.sync]
+	    [metabase.driver.sql-jdbc.sync.common :as common]
+	    [metabase.driver.sql-jdbc.sync.interface :as i]   
  	    [metabase.driver.sql.parameters.substitution :as params.substitution]
             [metabase.driver.sql-jdbc.execute.legacy-impl :as legacy]
             [metabase.driver.sql.util.unprepare :as unprepare]
