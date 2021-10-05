@@ -11,7 +11,7 @@ For instructions on how to install the IBM Informix JDBC Driver:
 https://www.ibm.com/docs/en/informix-servers/12.10?topic=driver-files-in-informix-jdbc
 
 ### IMPORTANT!
-release v.1.1.0 for Metabase v0.40
+release v.1.1.0 for Metabase v0.40   
 release v.1.0.0 for Metabase v0.37
 
 issue: Mega sync performance improvements #13746   
