@@ -139,7 +139,7 @@
          (dissoc details :host :port :dbname :additional-options)))
 
 (defmethod driver/can-connect? :ibminformix [driver details]
-  (let [connection (sql-jdbc.conn/connection-details->spec driver (ssh/include-ssh-tunnel details))]
+  (let [connection (sql-jdbc.conn/connection-details->spec driver (ssh/include-ssh-tunnel! details))]
     (= 1 (first (vals (first (jdbc/query connection ["SELECT 1 FROM SYSTABLES WHERE tabid=1"])))))))
 
 (defmethod sql-jdbc.sync/database-type->base-type :ibminformix [_ database-type]
