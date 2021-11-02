@@ -4,29 +4,28 @@ Driver for connecting IBM Informix DB to metabase
 Works with IBM Informix Version 12.10
 
 Also needed in the /metabase/plugins/ is the ifxjdbc.jar
-Download ifxjdbc.jar von:
+
 https://www.ibm.com/de-de/products/informix/developer-tools
 
 For instructions on how to install the IBM Informix JDBC Driver:
+
 https://www.ibm.com/docs/en/informix-servers/12.10?topic=driver-files-in-informix-jdbc
 
-### IMPORTANT!
+### IMPORTANT 1
 Build with tools.deps/tools.build/Depstar
-release v.1.2.0 for Metabase v0.41
+* IBMinformix Metabase v0.41.0 Driver - tag v.1.2.0
 
 Build with leiningen
-release v.1.1.1 for Metabase v0.40   
-release v.1.0.0 for Metabase v0.37
+* IBMinformix Metabase v0.40 Driver - tag v.1.1.1   
+* IBMinformix Metabase v0.37 Driver - tag v.1.0.0 
 
-issue: Mega sync performance improvements #13746   
-https://github.com/metabase/metabase/pull/13746
+as of Metabase v0.41.0 building drivers with LEININGEN is deprecated: see Branch built-with-leiningen
 
 ## IMPORTANT 2
 this is a work in progress; testing is not completed, so errors may occur when querying an Informix DB in metabase. Feedback is welcome.
 
-## as of Metabase v0.41.0 BUILD WITH tools.deps/tools.build/Depstar
-
-## HOW TO BUILD:
+## HOW TO BUILD 
+with tools.deps/tools.build/Depstar (as of Metabase v0.41.0)
 
 ### Prereqs: Install Metabase locally
 
@@ -64,9 +63,3 @@ will create `target/ibminformix.metabase-driver.jar`.
 cp target/ibminformix.metabase-driver.jar /path/to/metabase/plugins/
 java -jar /path/to/metabase/metabase.jar
 ```
-
-
-
-################## DEPRECATED #########################
-## HOW TO BUILD WITH LEININGEN: see Branch built-with-leiningen
-##########################################################
