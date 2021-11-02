@@ -28,36 +28,40 @@ this is a work in progress; testing is not completed, so errors may occur when q
 
 ## HOW TO BUILD:
 
-## Prereqs: Install Metabase locally
+### Prereqs: Install Metabase locally
 
-## Prereq: Install the Clojure CLI
+### Prereq: Install the Clojure CLI
 
 Make sure you have the `clojure` CLI version `1.10.3.933` or newer installed; you can check this with `clojure
 --version`. Follow the instructions at https://clojure.org/guides/getting_started if you need to install a
 newer version.
 
-## customize /metabase-informix-driver-1.2.0/deps.edn
+### customize /metabase-informix-driver-1.2.0/deps.edn
+replace /PATH/TO/ with the correct information
+```
   :exec-args  {:driver      :ibminformix
                 :project-dir "/PATH/TO/metabase-informix-driver-1.2.0"
                 :target-dir  "/PATH/TO/metabase-informix-driver-1.2.0/target"}}}}
+```
+replace /PATH/TO/ with the correct information and make sure to reference to your Metabase-Version in :extra-deps
 
-Make sure to reference to your Metabase-Version in :extra-deps
+```
   {:extra-deps {metabase/metabase-core {:local/root "/PATH/TO/metabase-0.41.0"}
                 metabase/build-drivers {:local/root "/PATH/TO/metabase-0.41.0/bin/build-drivers"}}
+```
 
-## Build it
+### Build it
 
 ```sh
 clojure -X:dev:build
 ```
 
-will create `target/ibminformix.metabase-driver.jar`. Copy this file to `/path/to/metabase/plugins/` and restart your
-server, and the driver will show up.
+will create `target/ibminformix.metabase-driver.jar`. 
 
-### Copy it to your plugins dir and restart Metabase
+### Copy it to your plugins dir, restart Metabase and the driver will show up.
 
 ```bash
-cp target/uberjar/ibminformix.metabase-driver.jar /path/to/metabase/plugins/
+cp target/ibminformix.metabase-driver.jar /path/to/metabase/plugins/
 java -jar /path/to/metabase/metabase.jar
 ```
 
