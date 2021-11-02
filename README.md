@@ -68,26 +68,5 @@ java -jar /path/to/metabase/metabase.jar
 
 
 ################## DEPRECATED #########################
-## HOW TO BUILD WITH LEININGEN:
-
-### Prereqs: Install Metabase locally, compiled for building drivers
-
-```bash
-cd /path/to/metabase/source
-lein install-for-building-drivers
-```
-
-### Build it
-
-```bash
-lein clean
-DEBUG=1 LEIN_SNAPSHOTS_IN_RELEASE=true lein uberjar
-```
-
-### Copy it to your plugins dir and restart Metabase
-
-```bash
-cp target/uberjar/informix.metabase-driver.jar /path/to/metabase/plugins/
-jar -jar /path/to/metabase/metabase.jar
-```
+## HOW TO BUILD WITH LEININGEN: see Branch built-with-leiningen
 ##########################################################
