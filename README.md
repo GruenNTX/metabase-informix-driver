@@ -36,7 +36,7 @@ Make sure you have the `clojure` CLI version `1.10.3.933` or newer installed; yo
 --version`. Follow the instructions at https://clojure.org/guides/getting_started if you need to install a
 newer version.
 
-### customize /metabase-informix-driver-1.2.0/deps.edn
+### customize /../deps.edn
 replace /PATH/TO/ with the correct information
 ```
   :exec-args  {:driver      :ibminformix
